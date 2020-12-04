@@ -13,21 +13,21 @@ public class Chateau extends Entite {
 	private final int NBRE_LIGNES = Constantes.HAUTEUR_CHATEAU/Constantes.DIMENSION_BRIQUE;
 	private final int NBRE_COLONNES = Constantes.LARGEUR_CHATEAU/Constantes.DIMENSION_BRIQUE;
 	
-	// tableau contenant les briques du château (la case contient true pour une brique et false pour vide)
+	// tableau contenant les briques du chï¿½teau (la case contient true pour une brique et false pour vide)
 	boolean tabChateau[][]= new boolean[NBRE_LIGNES][NBRE_COLONNES]; 
 	
 /**** CONSTRUCTEUR ****/
 	
 	public Chateau(int xPos) {
-		super.xPos = xPos; // Abscisse du point le plus à gauche du château
-		super.yPos = Constantes.Y_POS_CHATEAU; // Ordonnée du sommet du château
+		super.xPos = xPos; // Abscisse du point le plus ï¿½ gauche du chï¿½teau
+		super.yPos = Constantes.Y_POS_CHATEAU; // Ordonnï¿½e du sommet du chï¿½teau
 		
 		this.initTabChateau();
 	}
 	
 /**** METHODES ****/
 	
-	// Création du tableau initial associé au château sans dégât
+	// Crï¿½ation du tableau initial associï¿½ au chï¿½teau sans dï¿½gï¿½t
 	public void initTabChateau() {
 		// On remplit toutes les cases du tableau avec true
 		for(int ligne=0; ligne < NBRE_LIGNES; ligne++) {
@@ -36,7 +36,7 @@ public class Chateau extends Entite {
 			}	
 		}			
 		// On remplit toutes les cases sans brique du tableau avec false	
-		// Biseautage du haut du château
+		// Biseautage du haut du chï¿½teau
 		for(int colonne=0; colonne < 6; colonne++) {
 			for(int ligne=0; ligne < 2; ligne++) {
 				tabChateau[ligne][colonne]= false;
@@ -55,13 +55,13 @@ public class Chateau extends Entite {
 				tabChateau[ligne][NBRE_COLONNES-colonne-1]= false;
 			}
 		}
-		// Entrée du château
+		// Entrï¿½e du chï¿½teau
 		for(int ligne=18; ligne < NBRE_LIGNES; ligne++) {
 			for(int colonne=10; colonne < NBRE_COLONNES-10; colonne++) {
 				tabChateau[ligne][colonne]= false;
 			}	
 		}	
-		// Biseautage entrée du château
+		// Biseautage entrï¿½e du chï¿½teau
 		for(int colonne=12; colonne < NBRE_COLONNES-12; colonne++) {
 			for(int ligne=16; ligne < 18; ligne++) {
 				tabChateau[ligne][colonne]= false;
@@ -82,7 +82,7 @@ public class Chateau extends Entite {
 		}
 	}
 	
-	// Dessin du château
+	// Dessin du chï¿½teau
 	public void dessinChateau(Graphics g2) {
 		for(int ligne=0; ligne < NBRE_LIGNES; ligne++) {
 			for(int colonne=0; colonne < NBRE_COLONNES; colonne++) {
@@ -94,21 +94,21 @@ public class Chateau extends Entite {
 	}
 	
 	public int trouveColonneChateau(int xMissile) {
-		// Trouve la colonne du tableau associé au château touché par le tir
+		// Trouve la colonne du tableau associï¿½ au chï¿½teau touchï¿½ par le tir
 		int colonne = -1;
 		colonne = (xMissile - this.xPos) / Constantes.DIMENSION_BRIQUE;	
 		return colonne;
 	}
 	
 	public int trouveBrique(int colonne) {
-		// Trouve la première brique en paratnt du bas de la colonne du tableau associé au château ou renvoie -1
+		// Trouve la premiï¿½re brique en paratnt du bas de la colonne du tableau associï¿½ au chï¿½teau ou renvoie -1
 		int ligne = NBRE_LIGNES-1;
 		while(ligne >= 0 && tabChateau[ligne][colonne] == false) {ligne--;}		
 		return ligne;		
 	}
 	
 	private void enleveBriques(int ligne, int colonne) {
-		// Elimination des 6 premières briques de la colonne en partant du bas si elles existent
+		// Elimination des 6 premiï¿½res briques de la colonne en partant du bas si elles existent
 		for(int compteur=0; compteur < 6; compteur++) {
 			if(ligne - compteur >= 0) {
 				tabChateau[ligne - compteur][colonne] = false;
@@ -118,15 +118,15 @@ public class Chateau extends Entite {
 	}
 	
 	public void casseBriques(int xTir) {
-		// Récapitule les 3 méthodes qui précédent
-		Audio.playSound("/sons/sonCasseBrique.wav");
+		// Rï¿½capitule les 3 mï¿½thodes qui prï¿½cï¿½dent
+		audio.playSound("/sons/sonCasseBrique.wav");
 		int colonne = this.trouveColonneChateau(xTir);
 		this.enleveBriques(trouveBrique(colonne), colonne);
 	}	
 	
 	public int trouveBriqueHaut(int colonne) {
-		// Trouve la première brique en partant du haut de la colonne du tableau 
-		// associé au château ou renvoie -1
+		// Trouve la premiï¿½re brique en partant du haut de la colonne du tableau 
+		// associï¿½ au chï¿½teau ou renvoie -1
 		int ligne = 0;
 		if(colonne != -1) {
 		  while(ligne < NBRE_LIGNES && tabChateau[ligne][colonne] == false) {ligne++;}}			
@@ -134,7 +134,7 @@ public class Chateau extends Entite {
 	}
 	
 	private void enleveBriquesHaut(int ligne, int colonne) {
-		// Elimination des 6 premières briques de la colonne en partant du haut si elles existent
+		// Elimination des 6 premiï¿½res briques de la colonne en partant du haut si elles existent
 		for(int compteur=0; compteur < 6; compteur++) {
 			if(ligne + compteur < NBRE_LIGNES && colonne != -1) {
 				tabChateau[ligne + compteur][colonne] = false;
@@ -145,8 +145,8 @@ public class Chateau extends Entite {
 	}
 	
 	public void casseBriquesHaut(int xTir) {
-		// Récapitule les 3 méthodes qui précédent
-		Audio.playSound("/sons/sonCasseBrique.wav");
+		// Rï¿½capitule les 3 mï¿½thodes qui prï¿½cï¿½dent
+		audio.playSound("/sons/sonCasseBrique.wav");
 		int colonne = this.trouveColonneChateau(xTir);
 		this.enleveBriquesHaut(trouveBriqueHaut(colonne), colonne);
 	}	

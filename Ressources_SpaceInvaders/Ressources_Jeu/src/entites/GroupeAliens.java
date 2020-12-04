@@ -40,7 +40,7 @@ public class GroupeAliens {
 /**** METHODES ****/
 		
 	private void initTableauAliens() {
-		// Méthode qui remplit le tableau complet des aliens
+		// Mï¿½thode qui remplit le tableau complet des aliens
 		for(int colonne=0; colonne<10; colonne++) {
 			this.tabAlien[0][colonne] = new Alien(Constantes.X_POS_INIT_ALIEN + (Constantes.LARGEUR_ALIEN + Constantes.ECART_COLONNES_ALIEN) * colonne, 
 					Constantes.ALT_INIT_ALIEN, "/images/alienHaut1.png", "/images/alienHaut2.png");
@@ -70,7 +70,7 @@ public class GroupeAliens {
 	}
 		
 	private boolean toucheBordGauche() {
-		// Méthode qui détecte le bord gauche de la fenêtre
+		// Mï¿½thode qui dï¿½tecte le bord gauche de la fenï¿½tre
 		boolean reponse = false;
 		for(int colonne=0; colonne<10; colonne++) {
 			for(int ligne=0; ligne<5; ligne++) {
@@ -86,7 +86,7 @@ public class GroupeAliens {
 	}
 	
 	private boolean toucheBordDroit() {
-		// Méthode qui détecte le bord droit de la fenêtre
+		// Mï¿½thode qui dï¿½tecte le bord droit de la fenï¿½tre
 		boolean reponse = false;
 		for(int colonne=0; colonne<10; colonne++) {
 			for(int ligne=0; ligne<5; ligne++) {
@@ -103,7 +103,7 @@ public class GroupeAliens {
 	}
 	
 	public void alienTourneEtDescend() {
-		// Méthode qui change le sens de déplacement de l'alien et le descend d'un cran
+		// Mï¿½thode qui change le sens de dï¿½placement de l'alien et le descend d'un cran
 		if(this.toucheBordDroit() == true) {			
 			for(int colonne=0; colonne<10; colonne++) {
 				for(int ligne=0; ligne<5; ligne++) {
@@ -131,12 +131,12 @@ public class GroupeAliens {
 	}
 	
 	public void deplacementAliens() {
-		// Méthode qui gère le déplacement des aliens
-		if(this.tabAlienMort[0] != -1) { // Elimination de l'alien mort si nécessaire
+		// Mï¿½thode qui gï¿½re le dï¿½placement des aliens
+		if(this.tabAlienMort[0] != -1) { // Elimination de l'alien mort si nï¿½cessaire
 			elimineAlienMort(tabAlienMort);
-			tabAlienMort[0] = -1; // Réinitialisation de tabAlienMort
+			tabAlienMort[0] = -1; // Rï¿½initialisation de tabAlienMort
 		}
-		if(this.vaADroite == true) { // Déplacement vers la droite
+		if(this.vaADroite == true) { // Dï¿½placement vers la droite
 			for(int colonne=0; colonne<10; colonne++) {
 				for(int ligne=0; ligne<5; ligne++) {	
 					if(this.tabAlien[ligne][colonne] != null) {
@@ -144,7 +144,7 @@ public class GroupeAliens {
 					}
 				}
 			}
-		}else{ // Déplacement vers la gauche
+		}else{ // Dï¿½placement vers la gauche
 			for(int colonne=0; colonne<10; colonne++) {
 				for(int ligne=0; ligne<5; ligne++) {
 					if(this.tabAlien[ligne][colonne] != null) {
@@ -153,19 +153,19 @@ public class GroupeAliens {
 				}
 			}
 		}
-		// les aliens émettent un son
+		// les aliens ï¿½mettent un son
 		this.joueSonAlien();
-		// Incrémentation du compteur de son
+		// Incrï¿½mentation du compteur de son
 		this.compteurSonAlien++;
 		// Changement de l'image de l'alien
 		if(this.pos1 == true) {this.pos1 = false;} 
 		else {this.pos1 = true;}
-		// Màj du sens de déplacement si un alien atteint le bord de la fenêtre
+		// Mï¿½j du sens de dï¿½placement si un alien atteint le bord de la fenï¿½tre
 		this.alienTourneEtDescend();
 	}
 	
 	public void tirVaisseauToucheAlien(TirVaisseau tirVaisseau) {
-		// Détection contact tirVaisseau avec alien
+		// Dï¿½tection contact tirVaisseau avec alien
 		for(int colonne=0; colonne<10; colonne++) {
 			for(int ligne=0; ligne<5; ligne++) {
 				if(this.tabAlien[ligne][colonne] != null) {
@@ -189,16 +189,16 @@ public class GroupeAliens {
 	}
 
 	private void elimineAlienMort(int[] tabAlienMort) {
-		// Méthode qui enlève l'alien mort du tableau (case à null)
+		// Mï¿½thode qui enlï¿½ve l'alien mort du tableau (case ï¿½ null)
 		this.tabAlien[tabAlienMort[0]][tabAlienMort[1]] = null;
 		this.nombreAliens--;
 	}
 	
 	public int[] choixAlienQuiTire() {
-		// Renvoie la position d'un alien tiré au hasard dans tabAlien en bas de sa 
+		// Renvoie la position d'un alien tirï¿½ au hasard dans tabAlien en bas de sa 
 		// colonne (ligne, colonne)
 		int positionAlien[] = {-1,-1};		
-		if(this.nombreAliens != 0) { // On vérifie qu'il reste des aliens vivants
+		if(this.nombreAliens != 0) { // On vï¿½rifie qu'il reste des aliens vivants
 			do {int colonne = hasard.nextInt(10); // On tire au hasard une colonne du 
 			// tableau des aliens		
 				for(int ligne=4;ligne>=0;ligne--) { // On cherche le 1er alien vivant 
@@ -214,12 +214,16 @@ public class GroupeAliens {
 		return positionAlien;
 	}
 	
-	private void joueSonAlien() { // Méthode qui joue le son de l'alien (4 sons possibles)
+	private void joueSonAlien() { // Mï¿½thode qui joue le son de l'alien (4 sons possibles)
 		int compteur = this.compteurSonAlien % 4;
-		if(compteur==0) {Audio.playSound("/sons/sonAlien1.wav");}
-		else if(compteur==1) {Audio.playSound("/sons/sonAlien2.wav");}
-		else if(compteur==2) {Audio.playSound("/sons/sonAlien3.wav");}
-		else {Audio.playSound("/sons/sonAlien4.wav");}
+		if(compteur==0) {
+            audio.playSound("/sons/sonAlien1.wav");}
+		else if(compteur==1) {
+            audio.playSound("/sons/sonAlien2.wav");}
+		else if(compteur==2) {
+            audio.playSound("/sons/sonAlien3.wav");}
+		else {
+            audio.playSound("/sons/sonAlien4.wav");}
 	}
 	
 	public int getNombreAliens() {return nombreAliens;}

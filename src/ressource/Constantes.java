@@ -11,9 +11,15 @@ public abstract class Constantes {
     //Dimensions Vaisseau
     public static final int LARGEUR_VAISSEAU = 39;
     public static final int HAUTEUR_VAISSEAU = 24;
+
     //Position initiale du vaisseau
     public static final int X_POS_INIT_VAISSEAU = (LARGUEUR_FENETRE- LARGEUR_VAISSEAU)/2;
     public static final int Y_POS_VAISSEAU = 490;
+
     //Unité de deplacement du vaisseau
     public static final int DX_VAISSEAU = 1;
+
+    //Limite de deplacement du vaisseau
+    public static final int LIMITE_GAUCHE_VAISSEAU = 60;
+    public static final int LIMITE_DROITE_VAISSEAU = 500;
 }

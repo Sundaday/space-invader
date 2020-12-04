@@ -54,13 +54,13 @@ public class TirAlien extends Entite {
 	}		
 	
 	private boolean tirAlienAHauteurDeChateau() { 
-		// Renvoie vrai si le tir du vaisseau est à hauteur des châteaux
+		// Renvoie vrai si le tir du vaisseau est ï¿½ hauteur des chï¿½teaux
 		if(this.yPos < Constantes.Y_POS_CHATEAU + Constantes.HAUTEUR_CHATEAU && this.yPos + this.hauteur > Constantes.Y_POS_CHATEAU) {return true;}
 		else {return false;}	
 	}
 	
 	private int chateauProche() {
-		// Renvoie le numéro du château (0,1,2 ou 3) dans la zone de tir du vaisseau
+		// Renvoie le numï¿½ro du chï¿½teau (0,1,2 ou 3) dans la zone de tir du vaisseau
 		int numeroChateau = -1;
 		int colonne = -1;
 		while (numeroChateau == -1 && colonne < 4) {
@@ -82,10 +82,10 @@ public class TirAlien extends Entite {
 		return xPosTirAlien;
 	}
 	
-	public int[] tirAlienToucheChateau() { // Renvoie numéro château touché et abscisse du tir
+	public int[] tirAlienToucheChateau() { // Renvoie numï¿½ro chï¿½teau touchï¿½ et abscisse du tir
 		int[] tabRep = {-1,-1}; 
-		if(this.tirAlienAHauteurDeChateau() == true) { // Le tir alien est à hauteur du château		
-			tabRep[0] = this.chateauProche(); // enregistre le numéro du château touché dans tabRep[0]
+		if(this.tirAlienAHauteurDeChateau() == true) { // Le tir alien est ï¿½ hauteur du chï¿½teau		
+			tabRep[0] = this.chateauProche(); // enregistre le numï¿½ro du chï¿½teau touchï¿½ dans tabRep[0]
 			if(tabRep[0] != -1) {
 				tabRep[1] = this.abscisseContactTirAlienChateau(
 				Main.scene.tabChateaux[tabRep[0]]);}		 
@@ -94,11 +94,11 @@ public class TirAlien extends Entite {
 	}	
 	
 	public void TirAlienDetruitChateau(Chateau tabChateaux[]) {
-		int[] tab = this.tirAlienToucheChateau(); // Contient (-1,-1) ou le numéro du château touché et l'abscisse du tir
-		if(tab[0] != -1) { // Un château est touché
+		int[] tab = this.tirAlienToucheChateau(); // Contient (-1,-1) ou le numï¿½ro du chï¿½teau touchï¿½ et l'abscisse du tir
+		if(tab[0] != -1) { // Un chï¿½teau est touchï¿½
 			if(tabChateaux[tab[0]].trouveBriqueHaut(tabChateaux[tab[0]].trouveColonneChateau(tab[1])) != -1
 				&& tabChateaux[tab[0]].trouveBriqueHaut(tabChateaux[tab[0]].trouveColonneChateau(tab[1])) != 27) {
-				tabChateaux[tab[0]].casseBriquesHaut(tab[1]); // Détruit les briques du château touché									
+				tabChateaux[tab[0]].casseBriquesHaut(tab[1]); // Dï¿½truit les briques du chï¿½teau touchï¿½									
 				this.yPos = 700; // On tue le tir de l'alien
 			}
 		}
@@ -109,7 +109,7 @@ public class TirAlien extends Entite {
 		if(this.yPos < vaisseau.getyPos() + vaisseau.getHauteur() && this.yPos + this.hauteur > vaisseau.getyPos() 
 			&& this.xPos + this.largeur > vaisseau.getxPos() && this.xPos < vaisseau.getxPos() + vaisseau.getLargeur()){
 			    this.yPos = 700;
-			    Audio.playSound("/sons/sonDestructionVaisseau.wav");
+			    audio.playSound("/sons/sonDestructionVaisseau.wav");
 				return true;
 			} 
 		else{return false;}

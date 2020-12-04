@@ -54,25 +54,25 @@ public class TirVaisseau extends Entite {
 	}
 	
 	public boolean tueAlien(Alien alien) {
-		// le tir du vaisseau détruit un alien
+		// le tir du vaisseau dï¿½truit un alien
 		if(this.yPos < alien.getyPos() + alien.getHauteur() 
 			&& this.yPos + this.hauteur > alien.getyPos() 
 			&& this.xPos + this.largeur > alien.getxPos() 
 			&& this.xPos < alien.getxPos() + alien.getLargeur()){
-			Audio.playSound("/sons/sonAlienMeurt.wav");
+			audio.playSound("/sons/sonAlienMeurt.wav");
 				return true;
 			} 
 		else{return false;}
 	}
 	
 	private boolean tirVaisseauAHauteurDeChateau() { 
-		// Renvoie vrai si le tir du vaisseau est à hauteur des châteaux
+		// Renvoie vrai si le tir du vaisseau est ï¿½ hauteur des chï¿½teaux
 		if(this.yPos < Constantes.Y_POS_CHATEAU + Constantes.HAUTEUR_CHATEAU && this.yPos + this.hauteur > Constantes.Y_POS_CHATEAU) {return true;}
 		else {return false;}	
 	}
 	
 	private int chateauProche() {
-		// Renvoie le numéro du château (0,1,2 ou 3) dans la zone de tir du vaisseau
+		// Renvoie le numï¿½ro du chï¿½teau (0,1,2 ou 3) dans la zone de tir du vaisseau
 		int numeroChateau = -1;
 		int colonne = -1;
 		while (numeroChateau == -1 && colonne < 4) {
@@ -88,19 +88,19 @@ public class TirVaisseau extends Entite {
 	}
 		
 	private int abscisseContactTirChateau(Chateau chateau) {
-		// Renvoie l'abscisse du tir du vaisseau lors du contact avec un château
+		// Renvoie l'abscisse du tir du vaisseau lors du contact avec un chï¿½teau
 		int xPosTirVaisseau = -1;
 		if(this.xPos + this.largeur > chateau.getxPos() && this.xPos < chateau.getxPos() + Constantes.LARGEUR_CHATEAU){xPosTirVaisseau = this.xPos;}	
 		return xPosTirVaisseau;
 	}
 	
 	public int[] tirVaisseauToucheChateau() {
-		// Renvoie numéro château touché et abscisse du tir
+		// Renvoie numï¿½ro chï¿½teau touchï¿½ et abscisse du tir
 		int[] tabRep = {-1, -1}; 
-		if(this.tirVaisseauAHauteurDeChateau() == true) { // Le tir du vaisseau est à hauteur du château		
-			tabRep[0] = this.chateauProche(); // enregistre le numéro du château touché dans tabRep[0]
+		if(this.tirVaisseauAHauteurDeChateau() == true) { // Le tir du vaisseau est ï¿½ hauteur du chï¿½teau		
+			tabRep[0] = this.chateauProche(); // enregistre le numï¿½ro du chï¿½teau touchï¿½ dans tabRep[0]
 			if(tabRep[0] != -1) {
-				//enregistre l'abscisse du tir du vaisseau lors du contact avec le château dans tabRep[1]
+				//enregistre l'abscisse du tir du vaisseau lors du contact avec le chï¿½teau dans tabRep[1]
 				tabRep[1] = this.abscisseContactTirChateau(Main.scene.tabChateaux[tabRep[0]]);
 			}		 
 		}		
@@ -108,11 +108,11 @@ public class TirVaisseau extends Entite {
 	}
 	
 	public void tirVaisseauDetruitChateau(Chateau tabChateaux[]) {
-		int[] tab = this.tirVaisseauToucheChateau(); // Contient (-1,-1) ou le numéro du château touché et l'abscisse du contact tirVaisseau et château
-		if(tab[0] != -1) { // Un château est touché
+		int[] tab = this.tirVaisseauToucheChateau(); // Contient (-1,-1) ou le numï¿½ro du chï¿½teau touchï¿½ et l'abscisse du contact tirVaisseau et chï¿½teau
+		if(tab[0] != -1) { // Un chï¿½teau est touchï¿½
 			if(tabChateaux[tab[0]].trouveBrique(tabChateaux[tab[0]].trouveColonneChateau(tab[1])) != -1) {
-				tabChateaux[tab[0]].casseBriques(tab[1]); // Détruit les briques du château touché									
-				this.yPos = -1; // On tue le tir et on réactive le canon du vaisseau
+				tabChateaux[tab[0]].casseBriques(tab[1]); // Dï¿½truit les briques du chï¿½teau touchï¿½									
+				this.yPos = -1; // On tue le tir et on rï¿½active le canon du vaisseau
 			}
 		}
 	}

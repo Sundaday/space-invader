@@ -8,10 +8,15 @@ import java.awt.event.KeyListener;
 public class Clavier implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
-        if(e.getKeyCode() == KeyEvent.VK_RIGHT){
-            Main.scene.vaisseau.setDx(Constantes.DX_VAISSEAU);
-        } else if (e.getKeyCode() == KeyEvent.VK_LEFT){
-            Main.scene.vaisseau.setDx(-Constantes.DX_VAISSEAU);
+        switch (e.getKeyCode()) {
+            case KeyEvent.VK_LEFT:
+                //System.out.println("L");
+                Main.scene.vaisseau.setDx(-Constantes.DX_VAISSEAU);
+                break;
+            case KeyEvent.VK_RIGHT:
+                //System.out.println("R");
+                Main.scene.vaisseau.setDx(Constantes.DX_VAISSEAU);
+                break;
         }
     }
 

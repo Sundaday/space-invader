@@ -27,7 +27,7 @@ public class Vaisseau extends Entite {
     //Methodes
     public int deplacementVaisseau() {
         //Renvoi la nouvelle position du vaisseau apres déplacement eventuel
-        if (this.dx < 0) {
+        //if (this.dx < 0) {
             if (this.xPos > Constantes.LIMITE_GAUCHE_VAISSEAU) {
                 this.xPos = this.xPos + this.dx;
             } else if (dx > 0) {
@@ -35,7 +35,7 @@ public class Vaisseau extends Entite {
                     this.xPos = this.xPos + this.dx;
                 }
             }
-        }
+        //}
         return this.xPos;
     }
 
